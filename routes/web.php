@@ -20,3 +20,9 @@ Route::get('/', function () {
 Route::get('about', function () {
     return view('about');
 });
+
+
+$topics = [ 'Pages', 'Blade', 'Others'];
+Route::get ('/other', function() use ($topics){
+    return (view('/other', ['topics'=>$topics]));
+});
