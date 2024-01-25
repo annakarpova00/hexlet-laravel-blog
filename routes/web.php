@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PageController;
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,15 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::get('about', function () {
-    return view('about');
-});
-
+Route::get('about', [PageController::class, 'about']);
 
 $topics = [ 'Pages', 'Blade', 'Others'];
 Route::get ('/other', function() use ($topics){
     return (view('/other', ['topics'=>$topics]));
+});
+
+Route::get ('/articles', function() {
+    $articles = Article::all();
+    return view('articles', ['articles' => $articles]);
+});
+
+Route::get('/flights', function (){
+    $flights = App\Models\Flight::all();
+    return view('flights', ['flights'=> $flights]);
 });

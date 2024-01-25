@@ -13,6 +13,10 @@
 <div class="container mt-4">
     <h1>@yield('header')</h1>
     <div>
+        <a href="/articles">Статьи</a>
+        <a href="/other">Другие</a>
+    </div>
+    <div>
         @yield('content')
     </div>
 </div>
