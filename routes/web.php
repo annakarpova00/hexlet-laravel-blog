@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PageController;
 use App\Models\Article;
 use Illuminate\Support\Facades\Route;
@@ -15,23 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [PageController::class, 'index'])->name ('page.index');
 
-Route::get('about', [PageController::class, 'about']);
+Route::get('articles', [ArticleController::class, 'index'])
+    ->name('articles.index');
 
-$topics = [ 'Pages', 'Blade', 'Others'];
-Route::get ('/other', function() use ($topics){
-    return (view('/other', ['topics'=>$topics]));
-});
+Route::get('articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
-Route::get ('/articles', function() {
-    $articles = Article::all();
-    return view('articles', ['articles' => $articles]);
-});
 
-Route::get('/flights', function (){
-    $flights = App\Models\Flight::all();
-    return view('flights', ['flights'=> $flights]);
-});

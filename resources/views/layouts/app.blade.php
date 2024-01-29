@@ -10,12 +10,10 @@
     <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
+
 <div class="container mt-4">
     <h1>@yield('header')</h1>
-    <div>
-        <a href="/articles">Статьи</a>
-        <a href="/other">Другие</a>
-    </div>
+    <div><a href="http://127.0.0.1:8000/articles">Статьи</a></div>
     <div>
         @yield('content')
     </div>
